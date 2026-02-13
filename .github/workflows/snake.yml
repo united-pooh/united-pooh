@@ -28,8 +28,8 @@ jobs:
           
           # ⬇️ 修正点 3: 确保 outputs 格式干净
           outputs: |
-            dist/github-contribution-grid-snake.svg?color_snake=#7bc96f&palette=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585
-            dist/github-contribution-grid-snake-dark.svg?color_snake=#7bc96f&palette=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585
+            dist/github-contribution-grid-snake.svg?color_snake=#ff85c0&palette=#ffffff,#f6ffed,#d9f7be,#73d13d,#389e0d
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#ff85c0
 
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v3
