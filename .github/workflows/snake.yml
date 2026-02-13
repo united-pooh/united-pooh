@@ -23,8 +23,8 @@ jobs:
           
           outputs: |
             dist/github-contribution-grid-snake.svg?color_snake=#7bc96f&&color_dots=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585
-            dist/github-contribution-grid-snake-dark.svg?color_snake=#7bc96f&color_dots=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585
-
+            dist/github-contribution-grid-snake-dark.svg?color_snake=#fcee0a&color_dots=#161b22,#240046,#7b2cbf,#ff006e,#3a86ff
+            
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v3
         with:
