@@ -1,10 +1,7 @@
 name: Generate Snake
-
 on:
-  # 每天午夜自动运行
   schedule:
     - cron: "0 0 * * *" 
-  # 允许手动触发
   workflow_dispatch:
   
 permissions:
@@ -23,10 +20,7 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           github_token: ${{ secrets.PAT }}
           outputs: |
-            # 1. 浅色模式文件 (强制樱花粉格子 + 青团绿蛇)
             dist/github-contribution-grid-snake.svg?color_snake=#7bc96f&palette=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585
-            
-            # 2. 深色模式文件 (也强制樱花粉！这样你开夜间模式也能看到)
             dist/github-contribution-grid-snake-dark.svg?color_snake=#7bc96f&palette=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585 
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v3
