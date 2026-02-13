@@ -1,4 +1,4 @@
-name: Generate Snake (Manual)
+name: Generate Snake
 
 on:
   schedule:
@@ -12,43 +12,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. 检出代码
       - name: Checkout
         uses: actions/checkout@v3
 
-      # 2. 准备 Node.js 环境 (为了运行 npx)
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Generate Snake
+        # ✅ 使用官方标准版 (去掉 /svg-only)
+        uses: Platane/snk@v3
         with:
-          node-version: '18'
+          # ✅ 您的用户名
+          github_user_name: united-pooh
+          
+          # ✅ 您的 Token (必须叫 PAT，且勾选了 repo 权限)
+          github_token: ${{ secrets.PAT }}
+          
+          # ✅ 颜色配置 (强制樱花粉 + 青团绿蛇)
+          # 注意：这里直接指定颜色，中间不要有空格
+          outputs: |
+            dist/github-contribution-grid-snake.svg?color_snake=#7bc96f&palette=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585
+            dist/github-contribution-grid-snake-dark.svg?color_snake=#7bc96f&palette=#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585
 
-      # 3. 核心步骤：直接用命令行生成！(不再依赖 Action 封装)
-      - name: Generate Snake SVG
-        env:
-          # ⚠️ 必须把 Token 传给环境变量，名字必须叫 GITHUB_TOKEN
-          # 这里引用您的 secrets.PAT (确保您仓库里存的名字是对的)
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        run: |
-          # 创建输出目录
-          mkdir -p dist
-
-          npx snk@3 \
-            --username ${{ github.repository_owner }} \
-            --color_snake "#7bc96f" \
-            --palette "#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585" \
-            dist/github-contribution-grid-snake.svg
-
-          # 生成暗黑版
-          npx snk@3 \
-            --username ${{ github.repository_owner }} \
-            --color_snake "#7bc96f" \
-            --palette "#ffffff,#ffeef0,#ffb6c1,#ff69b4,#c71585" \
-            dist/github-contribution-grid-snake-dark.svg
-
-      # 4. 推送结果
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKE }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: output
           publish_dir: dist
