@@ -22,7 +22,7 @@ jobs:
           github_token: ${{ secrets.PAT }}
           
           outputs: |
-            dist/github-contribution-grid-snake.svg?color_snake=#7bc96f&color_dots=#f5f2f0,#ffeef0,#ffb6c1,#ff69b4,#c71585
+            dist/github-contribution-grid-snake.svg?color_snake=#00ff00&color_dots=#1a1a2e,#ff006e,#8338ec,#3a86ff,#06ffa5
             dist/github-contribution-grid-snake-dark.svg?color_snake=#fcee0a&color_dots=#161b22,#4cc9f0,#4361ee,#7209b7,#f72585
             
       - name: Push to output branch
